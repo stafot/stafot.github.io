@@ -39,8 +39,7 @@ interface SocialIconProps {
 const SocialIcon = ({ Icon, href, label }: SocialIconProps) => {
   return (
     <Link 
-      to={href.startsWith('http') ? '' : href} 
-      href={href.startsWith('http') ? href : undefined}
+      to={href.startsWith('http') ? href : href} 
       target={href.startsWith('http') ? "_blank" : undefined}
       rel={href.startsWith('http') ? "noopener noreferrer" : undefined}
       className="w-10 h-10 rounded-full border border-white/50 flex items-center justify-center text-white hover:bg-white hover:text-blog-purple-dark transition-all duration-300"
