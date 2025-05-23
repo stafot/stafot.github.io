@@ -120,7 +120,7 @@ Our SLO journey continues with plans to:
 - Expand the framework to internal services
 - Foster a culture of shared responsibility
 
-*This post summarizes our detailed engineering blog post. For complete technical details, metrics queries, and implementation specifics, please visit the original article.*
+*This post summarizes our detailed engineering blog post. For complete technical details, metrics queries, and implementation specifics, please visit the original article. https://mattermost.com/blog/sloth-for-slo-monitoring-and-alerting-with-prometheus/ *
     `
   },
   {
@@ -175,7 +175,7 @@ Our forward-looking strategy includes:
 
 Our experience with spot instances taught us valuable lessons about balancing cost savings with operational stability. While the potential for savings was attractive, we found that the unpredictability and management complexity didn't align with our operational objectives.
 
-*This post is a summary of our detailed engineering blog post. For the complete technical details and implementation specifics, please visit the original article.*
+*This post is a summary of our detailed engineering blog post. For the complete technical details and implementation specifics, please visit the original article. https://mattermost.com/blog/mattermosts-cloud-optimization-journey/*
     `
   }
 ];
@@ -185,39 +185,21 @@ export const projects: Project[] = [
     id: "1",
     title: "Kubernetes Node Local DNS Cache Service",
     slug: "kubernetes-node-local-dns-cache",
-    description: "Implementation of a node-local DNS cache to improve DNS resolution performance in Kubernetes clusters.",
+    description: "Add node-local-dns headless service.",
     content: `
-# Kubernetes Node Local DNS Cache Service
-
 ## Project Overview
 
-This project implements a node-local DNS cache for Kubernetes clusters to improve DNS resolution performance and reliability.
+This project implements a node-local-dns headless service.
 
 ## Problem Statement
 
-DNS queries in Kubernetes clusters typically go through cluster DNS services like CoreDNS. This can introduce latency and reliability issues, especially in large clusters with high query volumes.
-
-## Solution
-
-The node-local DNS cache runs as a DaemonSet, deploying a DNS cache on every node in the cluster. This approach:
-
-- Reduces DNS query latency by serving results from the local cache
-- Decreases the load on cluster DNS services
-- Improves reliability during cluster DNS service disruptions
-
-## Implementation Details
-
-- Used CoreDNS with custom configuration for the cache
-- Implemented proper cache TTL settings for different record types
-- Added monitoring with Prometheus metrics
-- Created Grafana dashboards for visibility
+While applied NodeLocal DNSCache addon we needed to expose DaemonSet metrics to Prometheus, for this purpose created a headless service and a relevant ServiceMonitor.
 
 ## Results
 
 After deploying this solution:
-- 80% reduction in DNS query latency
-- Significant decrease in load on cluster DNS services
-- Improved application reliability during DNS service updates
+- Ability to unify monitoring for NodeLocal DNSCache addon and coredns.
+
 
 The project is open source and available for contribution at [GitHub](https://github.com/kubernetes/kubernetes/pull/88412).
     `
@@ -226,49 +208,17 @@ The project is open source and available for contribution at [GitHub](https://gi
     id: "2",
     title: "Ingress NGINX Controller Improvements",
     slug: "ingress-nginx-controller-improvements",
-    description: "Enhancements to the Kubernetes Ingress NGINX Controller for better performance, security, and observability.",
+    description: "Unit tests addition to the Kubernetes Ingress NGINX Controller helm chart.",
     content: `
-# Ingress NGINX Controller Improvements
 
 ## Project Overview
 
-This project focuses on enhancing the Kubernetes Ingress NGINX Controller with features for improved performance, security, and observability.
-
-## Key Enhancements
-
-### Performance Optimizations
-
-- Tuned worker processes and connections for higher throughput
-- Implemented connection pooling for backend services
-- Added intelligent caching policies for static content
-
-### Security Improvements
-
-- Enhanced TLS configuration with modern ciphers and protocols
-- Implemented rate limiting and bot protection
-- Added support for external authentication services
-
-### Observability Enhancements
-
-- Extended Prometheus metrics for deeper insights
-- Created custom Grafana dashboards
-- Improved logging with structured JSON format
-
-## Implementation Process
-
-The improvements were developed following a phased approach:
-
-1. Research and benchmarking of current performance
-2. Development and testing in isolated environments
-3. Gradual rollout to production clusters
-4. Monitoring and further optimization
+This project focuses on adding unit tests to the Kubernetes Ingress NGINX Controller helm chart.
 
 ## Results
 
 These improvements resulted in:
-- 35% increase in request throughput
-- 40% reduction in latency for cached responses
-- Significantly improved security posture against web attacks
+- Increased unit test coverage.
 
 The changes have been contributed back to the open source project at [GitHub](https://github.com/kubernetes/ingress-nginx/pull/10731).
     `
@@ -277,166 +227,43 @@ The changes have been contributed back to the open source project at [GitHub](ht
     id: "3",
     title: "Prometheus Operator Enhancements",
     slug: "prometheus-operator-enhancements",
-    description: "Extensions to the Prometheus Operator for better multi-tenant support and resource optimization in large Kubernetes clusters.",
+    description: "Add ability for custom DNSConfig and DNSPolicy.",
     content: `
-# Prometheus Operator Enhancements
 
 ## Project Overview
 
-This project extends the Prometheus Operator with features for better multi-tenant support and resource optimization in large Kubernetes clusters.
+This project adds ability for custom DNSConfig and DNSPolicy to the Prometheus Operator.
 
 ## Key Features
+- Add ability for custom DNSConfig and DNSPolicy
 
-### Multi-tenant Improvements
-
-- Implemented namespace isolation for metrics access
-- Added custom authorization for different user roles
-- Created tenant-specific views and dashboards
-
-### Resource Optimization
-
-- Developed dynamic sharding based on metric volume
-- Implemented intelligent retention policies
-- Added compression for long-term storage
-
-### Operational Enhancements
-
-- Created automated backup and restore procedures
-- Implemented high availability configurations
-- Added comprehensive alerting templates
-
-## Technical Implementation
-
-The enhancements were built using:
-- Custom Kubernetes operators written in Go
-- Extended Prometheus configuration
-- Integration with external authentication systems
 
 ## Results
 
 These improvements enabled:
-- Support for 3x more tenants on the same infrastructure
-- 50% reduction in storage requirements
-- Improved query performance for complex metrics
+- More flexible DNS configuration.
+- Can help to DNS performance improvements, by ndots configuration.
 
 Documentation and code are available in our Git repository at [GitHub](https://github.com/prometheus-operator/prometheus-operator/pull/3899).
     `
   },
   {
     id: "4",
-    title: "Prometheus Community Charts - Kube Prometheus Stack",
-    slug: "prometheus-community-charts-kube-prometheus-stack",
-    description: "Contributions to the Prometheus Community's Helm charts for the Kube Prometheus Stack, improving deployment flexibility and monitoring capabilities.",
+    title: "Prometheus Community Charts",
+    slug: "prometheus-community-charts",
+    description: "Adding possibility to set a custom dnsConfig for the pods. Pod's DNS Config field enable users more control on the DNS settings for the pods.",
     content: `
-# Prometheus Community Charts - Kube Prometheus Stack
-
 ## Project Overview
 
-This project involves significant contributions to the Prometheus Community's Helm charts for the Kube Prometheus Stack, which provides a complete monitoring solution for Kubernetes clusters.
-
-## Key Contributions
-
-### Configuration Improvements
-
-- Enhanced configuration options for better customization
-- Added support for multi-tenant deployments
-- Improved secret management and configuration
-
-### Resource Optimization
-
-- Fine-tuned resource requests and limits for various components
-- Implemented conditional deployment options to reduce resource usage
-- Added efficient storage configuration options
-
-### Operational Features
-
-- Enhanced alerting rules with better categorization
-- Added additional dashboard templates for common use cases
-- Improved documentation for deployment in various environments
-
-## Impact
-
-These contributions have helped make the Kube Prometheus Stack more versatile and easier to adopt across different Kubernetes environments, from small development clusters to large enterprise deployments.
-
-The changes are available at [GitHub](https://github.com/prometheus-community/helm-charts/pull/639).
-    `
-  },
-  {
-    id: "5",
-    title: "Prometheus Community Charts - Node Exporter",
-    slug: "prometheus-community-charts-node-exporter",
-    description: "Enhancements to the Prometheus Node Exporter Helm chart, focusing on improving metric collection and resource efficiency.",
-    content: `
-# Prometheus Community Charts - Node Exporter
-
-## Project Overview
-
-This project focused on improving the Prometheus Node Exporter Helm chart, which is essential for collecting system-level metrics from all nodes in a Kubernetes cluster.
+This project focused on improving the PrometheusCommunity Helm Charts.
 
 ## Key Enhancements
 
-### Collection Optimization
+- Add ability to set a custom dnsConfig for the pods.
+- Pod's DNS Config field enable users more control on the DNS settings for the pods.
 
-- Added selective collectors to reduce unnecessary metric gathering
-- Improved collection interval configuration
-- Enhanced filesystem metrics collection
 
-### Resource Efficiency
-
-- Optimized memory usage for high-cardinality environments
-- Added resource limit recommendations based on node size
-- Implemented efficient DaemonSet scheduling
-
-### Operational Improvements
-
-- Added better support for tolerations and affinities
-- Enhanced security context configurations
-- Improved integration with service monitors
-
-## Technical Details
-
-The improvements were made with careful consideration of backward compatibility while introducing new features. The changes support various Kubernetes distributions and versions, making the Node Exporter more versatile across different environments.
-
-The contributions are available at [GitHub](https://github.com/prometheus-community/helm-charts/pull/641).
-    `
-  },
-  {
-    id: "6",
-    title: "Prometheus Community Charts - Alertmanager",
-    slug: "prometheus-community-charts-alertmanager",
-    description: "Improvements to the Alertmanager Helm chart focusing on high availability, notification templates, and integration capabilities.",
-    content: `
-# Prometheus Community Charts - Alertmanager
-
-## Project Overview
-
-This project enhanced the Alertmanager Helm chart, which is critical for routing and managing alerts from Prometheus monitoring systems.
-
-## Key Features Added
-
-### High Availability Configurations
-
-- Implemented proper cluster configuration for Alertmanager
-- Added mesh networking options for reliable alert delivery
-- Enhanced failover configurations for zero alert loss
-
-### Template Improvements
-
-- Added customizable notification templates
-- Implemented better grouping and routing options
-- Enhanced templating for various notification channels
-
-### Integration Capabilities
-
-- Added support for additional notification channels
-- Improved webhook configurations for third-party integrations
-- Enhanced PagerDuty, Slack, and Microsoft Teams integrations
-
-## Implementation Details
-
-The improvements were implemented with a focus on maintaining compatibility with existing deployments while providing new features. The configuration options were designed to be flexible for various deployment scenarios, from simple to complex enterprise environments.
-
-The contributions are available at [GitHub](https://github.com/prometheus-community/helm-charts/pull/644).
+The contributions and the reasoning are available at [GitHub](https://github.com/prometheus-community/helm-charts/issues/634).
     `
   }
 ];
