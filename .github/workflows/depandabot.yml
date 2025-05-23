@@ -1,0 +1,26 @@
+name: Dependabot GitHub-Actions updates
+
+on:
+  workflow_dispatch:         # manual "Run workflow" button
+  schedule:
+    - cron: '0 14 * * MON'   # every Monday at 14:00 UTC (daytime)
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Run Dependabot script
+        uses: dependabot/dependabot-script@d4f7a2b9d5c4a6e3c2b1a0f9e8d7c6b5a4f3e2d1  # v1.x
+        with:
+          directory: ".github/workflows"
+          package-manager: "github-actions"
+          update-type: "all"
+          open-pull-requests-limit: 5
