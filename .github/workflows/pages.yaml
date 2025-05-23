@@ -1,0 +1,38 @@
+name: Build & deploy site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production bundle
+        run: npm run build
+
+      # public/CNAME & .nojekyll are already in dist via Vite,
+      # but if you didn’t use public/, uncomment these:
+      # - name: Copy CNAME & disable Jekyll
+      #   run: |
+      #     echo "stafot.dev" > dist/CNAME
+      #     touch dist/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
