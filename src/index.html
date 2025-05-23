@@ -20,6 +20,17 @@
     <link rel="icon" type="image/png" href="/lovable-uploads/14764fa4-1492-46b0-84a9-9f6b2fdafec1.png" />
     <!-- Base path for GitHub Pages, required when deploying to custom domain -->
     <base href="/">
+    <script>
+      // Check for redirect from 404.html
+      (function() {
+        const redirect = localStorage.getItem('redirect');
+        if (redirect) {
+          localStorage.removeItem('redirect');
+          const cleanedPath = redirect.startsWith('/') ? redirect : '/' + redirect;
+          history.replaceState(null, null, cleanedPath);
+        }
+      })();
+    </script>
   </head>
 
   <body>
