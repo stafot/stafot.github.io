@@ -2,8 +2,7 @@
 import { useState } from 'react';
 import { blogPosts } from '@/lib/data';
 import BlogPostCard from '@/components/BlogPostCard';
-import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import SearchInput from '@/components/SearchInput';
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,16 +19,11 @@ const Blog = () => {
         Thoughts, technical guides, and insights on cloud engineering and DevOps
       </p>
       
-      <div className="relative max-w-md mb-8">
-        <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input
-          type="text"
-          placeholder="Search posts..."
-          className="pl-10"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
+      <SearchInput
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search posts..."
+      />
       
       {filteredPosts.length === 0 ? (
         <div className="text-center py-12">

@@ -142,7 +142,7 @@
   }
 }
 
-/* Keep existing keyframes and animations */
+/* Animations */
 @keyframes fade-in {
   0% { 
     opacity: 0; 

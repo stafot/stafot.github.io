@@ -2,8 +2,7 @@
 import { useState } from 'react';
 import { projects } from '@/lib/data';
 import ProjectCard from '@/components/ProjectCard';
-import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import SearchInput from '@/components/SearchInput';
 
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,16 +19,11 @@ const Projects = () => {
         Open source contributions and personal projects in cloud infrastructure and Kubernetes
       </p>
       
-      <div className="relative max-w-md mb-8">
-        <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input
-          type="text"
-          placeholder="Search projects..."
-          className="pl-10"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
+      <SearchInput
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search projects..."
+      />
       
       {filteredProjects.length === 0 ? (
         <div className="text-center py-12">
