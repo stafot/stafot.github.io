@@ -20,7 +20,7 @@ const Home = () => {
     id: project.id,
     title: project.title,
     slug: project.slug,
-    tags: project.tags || ['kubernetes', 'cloud-native', 'sre']
+    tags: ['kubernetes', 'cloud-native', 'sre'] // Fixed: Explicitly setting tags array
   }));
   
   return (
