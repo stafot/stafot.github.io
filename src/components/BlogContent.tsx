@@ -33,11 +33,9 @@ const BlogContent: React.FC<BlogContentProps> = ({ content }) => {
       .replace(/<li class="ml-6 list-disc">(.*?)<\/li>(?:\n<li class="ml-6 list-disc">(.*?)<\/li>)+/gs, 
         match => `<ul class="mb-6">${match}</ul>`)
       
-      // Fix article footers - replace asterisks with proper styling
-      .replace(/\*(This post summarizes.*?visit the original article\.)\*/g, 
-        '<p class="blog-footer text-muted-foreground italic mt-6">$1</p>')
-      .replace(/\*(This post summarizes.*?visit the original article\.)(.*?)\*/g, 
-        '<p class="blog-footer text-muted-foreground italic mt-6">$1 <a href="$2" class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Read more</a></p>');
+      // Fix article footers with proper link formatting
+      .replace(/This post (?:is a |)summary of our detailed engineering blog post\. For (?:the |)complete technical details(?:, metrics queries,|) and implementation specifics, please visit the original article(?:\.?) (https:\/\/[^\s]+)/g, 
+        'This post summary of our detailed engineering blog post. For complete technical details and implementation specifics, please visit the <a href="$1" class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">original article</a>.');
     
     return { __html: html };
   };
