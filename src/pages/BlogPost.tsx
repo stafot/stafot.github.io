@@ -29,7 +29,6 @@ const BlogPost = () => {
       
       <article>
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold">{post.title}</h1>
           <p className="text-muted-foreground mt-2">{post.date}</p>
         </div>
         

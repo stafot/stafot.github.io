@@ -7,7 +7,7 @@ interface ProfileHeaderProps {
   title?: string;
 }
 
-const ProfileHeader = ({ name, imageUrl, title = "Senior Site Reliability Engineer II" }: ProfileHeaderProps) => {
+const ProfileHeader = ({ name, imageUrl, title }: ProfileHeaderProps) => {
   return (
     <div className="flex flex-col items-center text-center animate-fade-up">
       <Avatar className="h-32 w-32 mb-4 border-4 border-white/20">
