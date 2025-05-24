@@ -1,4 +1,3 @@
-
 export interface BlogPost {
   id: string;
   title: string;
@@ -68,7 +67,7 @@ This automation initiative:
 
 ---
 
-*This post summarizes our detailed engineering blog post. For complete technical details and implementation specifics, please visit the [original article](https://mattermost.com/blog/automate-eks-node-rotation/).*
+This post summarizes our detailed engineering blog post. For complete technical details and implementation specifics, please visit the original article: https://mattermost.com/blog/automate-eks-node-rotation/
     `
   },
   {
@@ -120,7 +119,7 @@ Our SLO journey continues with plans to:
 - Expand the framework to internal services
 - Foster a culture of shared responsibility
 
-*This post summarizes our detailed engineering blog post. For complete technical details, metrics queries, and implementation specifics, please visit the original article. https://mattermost.com/blog/sloth-for-slo-monitoring-and-alerting-with-prometheus/ *
+This post summarizes our detailed engineering blog post. For complete technical details, metrics queries, and implementation specifics, please visit the original article: https://mattermost.com/blog/sloth-for-slo-monitoring-and-alerting-with-prometheus/
     `
   },
   {
@@ -175,7 +174,7 @@ Our forward-looking strategy includes:
 
 Our experience with spot instances taught us valuable lessons about balancing cost savings with operational stability. While the potential for savings was attractive, we found that the unpredictability and management complexity didn't align with our operational objectives.
 
-*This post is a summary of our detailed engineering blog post. For the complete technical details and implementation specifics, please visit the original article. https://mattermost.com/blog/mattermosts-cloud-optimization-journey/*
+This post is a summary of our detailed engineering blog post. For the complete technical details and implementation specifics, please visit the original article: https://mattermost.com/blog/mattermosts-cloud-optimization-journey/
     `
   }
 ];
@@ -267,4 +266,3 @@ The contributions and the reasoning are available at [GitHub](https://github.com
     `
   }
 ];
-
