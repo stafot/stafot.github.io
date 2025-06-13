@@ -30,7 +30,7 @@ jobs:
       - name: Prepare output directory
         run: |
           mkdir out
-          cp -r dist/* out/
+          cp -r docs/* out/
 
       - name: Inject CNAME & disable Jekyll
         run: |
