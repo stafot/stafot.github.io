@@ -1,4 +1,4 @@
-export interface BlogPost {
+export interface Post {
   id: string;
   title: string;
   date: string;
@@ -15,7 +15,7 @@ export interface Project {
   content: string;
 }
 
-export const blogPosts: BlogPost[] = [
+export const blogPosts: Post[] = [
   {
     id: "1",
     title: "Automating EKS Node Rotation for AMI Releases",
@@ -25,7 +25,7 @@ export const blogPosts: BlogPost[] = [
     content: `
 # Automating EKS Node Rotation for AMI Releases
 
-This article was originally published on the [Mattermost Engineering Blog](https://mattermost.com/blog/automate-eks-node-rotation/).
+This article was originally published on the Mattermost Engineering Blog.
 
 ## The Challenge of Toil
 
@@ -266,3 +266,24 @@ The contributions and the reasoning are available at [GitHub](https://github.com
     `
   }
 ];
+
+// Legacy exports for backward compatibility
+export const posts = blogPosts.map(post => ({
+  id: parseInt(post.id),
+  title: post.title,
+  excerpt: post.excerpt,
+  date: post.date,
+  readTime: "5 min read",
+  tags: ["SRE", "DevOps", "Cloud"]
+}));
+
+export const legacyProjects = projects.map(project => ({
+  id: parseInt(project.id),
+  title: project.title,
+  description: project.description,
+  technologies: ["Kubernetes", "DevOps", "Cloud"],
+  githubUrl: `https://github.com/stafot/${project.slug}`,
+  liveUrl: null,
+  stars: Math.floor(Math.random() * 100),
+  featured: parseInt(project.id) <= 2
+}));
