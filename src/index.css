@@ -1,7 +1,8 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
 @layer base {
   :root {
@@ -14,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 262 41% 39%;
+    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -36,12 +37,19 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -55,7 +63,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 262 41% 65%;
+    --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -90,96 +98,6 @@
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground;
   }
-  
-  .blog-heading {
-    @apply text-3xl md:text-4xl font-bold mb-6;
-  }
-  
-  .blog-subheading {
-    @apply text-xl md:text-2xl font-semibold mb-4;
-  }
-  
-  .blog-text {
-    @apply text-base leading-relaxed mb-4;
-  }
-  
-  .blog-link {
-    @apply text-primary hover:text-primary/80 underline transition-colors;
-  }
-}
-
-@layer components {
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
-  }
-  
-  .tag-badge {
-    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
-  }
-
-  .animated-link {
-    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
-  }
-  
-  .glass-card {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg;
-  }
-  
-  .dark .glass-card {
-    @apply bg-black/20 border-white/10;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  .text-pretty {
-    text-wrap: pretty;
-  }
-}
-
-/* Animations */
-@keyframes fade-in {
-  0% { 
-    opacity: 0; 
-    transform: translateY(10px); 
-  }
-  100% { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
-}
-
-@keyframes scale-in {
-  from { 
-    transform: scale(0.95); 
-    opacity: 0; 
-  }
-  to { 
-    transform: scale(1); 
-    opacity: 1; 
-  }
-}
-
-@keyframes slide-in-right {
-  from { 
-    transform: translateX(30px); 
-    opacity: 0; 
-  }
-  to { 
-    transform: translateX(0); 
-    opacity: 1; 
-  }
-}
-
-.animate-scale-in {
-  animation: scale-in 0.3s ease-out forwards;
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.4s ease-out forwards;
 }
